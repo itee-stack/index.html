@@ -1,0 +1,155 @@
+<!-- Replace the .header-bg-img CSS to make the image fill the header exactly -->
+<style>
+    .header-bg-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 0;
+        opacity: 0.28;
+        pointer-events: none;
+    }
+    header {
+        background: #2d3748;
+        color: #fff;
+        padding: 2rem 0 1.5rem 0;
+        text-align: center;
+        position: relative;
+        transition: background 0.8s;
+        z-index: 1;
+        overflow: hidden;
+        height: 180px; /* Add a fixed height to header */
+    }
+    @media (max-width: 600px) {
+        header {
+            height: 100px;
+        }
+        .header-bg-img {
+            height: 100%;
+        }
+    }
+    @keyframes slideInFromLeft {
+      0% {
+        opacity: 0;
+        transform: translateX(-80vw);
+      }
+      80% {
+        opacity: 1;
+        transform: translateX(2vw);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    .slide-in-header {
+      animation: slideInFromLeft 1.2s cubic-bezier(.77,0,.18,1) 0.2s both;
+    }
+</style>
+<body style="margin:0;padding:0;font-family:'Segoe UI',Arial,sans-serif;">
+  <script>
+    // Random background theme (image themes for AI, business, customer, hospitality)
+    const bgImages = [
+      // AI technology
+      'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1200&q=80',
+      // Business man/woman
+      'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?auto=format&fit=crop&w=1200&q=80',
+      // Happy customer
+      'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1200&q=80',
+      // Hospitality industry
+      'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80',
+      // Robot/AI assistant
+      'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1200&q=80',
+      // Bank/finance
+      'https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=1200&q=80',
+      // Customer care
+      'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80',
+      // Banquet/event
+      'https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=1200&q=80',
+      // Happy wealthy people
+      'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=1200&q=80'
+    ];
+    const themes = [
+      'linear-gradient(135deg,#f8fafc 60%,#e3f0ff 100%)',
+      'linear-gradient(120deg,#f6d365 0%,#fda085 100%)',
+      'linear-gradient(120deg,#a1c4fd 0%,#c2e9fb 100%)',
+      'linear-gradient(120deg,#fbc2eb 0%,#a6c1ee 100%)',
+      'linear-gradient(120deg,#fdcbf1 0%,#e6dee9 100%)',
+      'linear-gradient(120deg,#d4fc79 0%,#96e6a1 100%)',
+      'linear-gradient(120deg,#84fab0 0%,#8fd3f4 100%)',
+      'linear-gradient(120deg,#fccb90 0%,#d57eeb 100%)',
+      'linear-gradient(120deg,#e0c3fc 0%,#8ec5fc 100%)',
+      'linear-gradient(120deg,#f093fb 0%,#f5576c 100%)'
+    ];
+    document.body.style.background = themes[Math.floor(Math.random()*themes.length)];
+    // Pick a random image for the header and change it every 6 seconds
+    function setRandomHeaderImg() {
+      const headerImg = document.querySelector('.header-bg-img');
+      if(headerImg) headerImg.src = bgImages[Math.floor(Math.random()*bgImages.length)];
+    }
+    setRandomHeaderImg();
+    setInterval(setRandomHeaderImg, 6000);
+    // Contact form handler (sends to iteeconceptglobal@gmail.com via mailto)
+    document.getElementById('contactForm').onsubmit = function(e) {
+      e.preventDefault();
+      var name = document.getElementById('name').value;
+      var email = document.getElementById('email').value;
+      var message = document.getElementById('message').value;
+      var subject = encodeURIComponent('Contact from Website: ' + name);
+      var body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\nMessage: ' + message);
+      window.location.href = 'mailto:iteeconceptglobal@gmail.com?subject=' + subject + '&body=' + body;
+      document.getElementById('contactStatus').textContent = 'Thank you for contacting us! Your message will be sent via your email client.';
+      this.reset();
+    };
+  </script>
+  <header>
+    <!-- Logo removed as requested -->
+    <img src="" class="header-bg-img" alt="" style="width:100%;height:100%;object-fit:cover;">
+    <h1 class="slide-in-header" style="position:relative;z-index:1;margin:0;font-size:3.27rem;letter-spacing:2px;font-family:'Playfair Display',serif;font-weight:900;text-shadow:0 2px 8px #0006,0 1px 0 #fff2;">I.TEE CONCEPT GLOBAL (<span style='color:#fff;font-weight:bold;'>I.TEC &copy;</span>)</h1>
+    <p style="position:relative;z-index:1;margin:0.7rem 0 0 0;font-size:1.45rem;opacity:0.97;font-weight:700;letter-spacing:1px;text-shadow:0 2px 8px #0004;">Good Service, Better Always, Best For You....</p>
+    <p style="position:relative;z-index:1;margin:0.5rem 0 0 0;font-size:1.13rem;opacity:0.90;max-width:700px;margin-left:auto;margin-right:auto;text-shadow:0 1px 4px #0002;">At I.TEE CONCEPT GLOBAL, we are more than a tech partner—we are committed to helping you create memorable experiences that boost revenue by 50% and set your brand apart in the modern event and hospitality industry.</p>
+  </header>
+  <main style="max-width:800px;margin:56px auto 0 auto;background:rgba(255,255,255,0.97);border-radius:18px;box-shadow:0 8px 40px #0a254055,0 1.5px 0 #fff2;padding:48px 38px 38px 38px;text-align:center;border:1.5px solid #e0c3fc;backdrop-filter:blur(2px);">
+    <section style="margin-bottom:36px;text-align:left;">
+      <h3 style="color:#a67c52;font-size:1.45rem;margin-bottom:10px;font-family:'Playfair Display',serif;letter-spacing:1px;">About Us</h3>
+      <p style="color:#444;line-height:1.7;font-size:1.13rem;">
+        I.TEE CONCEPT GLOBAL is a forward-thinking company specializing in smart hospitality solutions and digital transformation (hospitality digital upgrade services, system that pays for itself in few months of implementation). We proudly serve a diverse range of clientele including hotels, lounges, restaurants, banquet facilities and many more industries, delivering innovative technology tailored to elevate guest and customer experiences and streamline service delivery.<br><br>
+        <b>We also build advanced Voice Flow Agents and AI chatbots for business, hospitality, and events.</b> Our solutions enable seamless, natural conversations with guests and customers—handling reservations, answering FAQs, taking orders, and providing instant support 24/7. These AI-powered agents can be integrated into your website, WhatsApp, social media, or on-premise kiosks, helping you automate routine tasks, reduce staff workload, and deliver a premium, personalized experience at scale.<br><br>
+        We offer basic-to-premium ordering system setup, upgrades, and training. Our mission is to enhance operational efficiency and guest satisfaction by aligning cutting-edge technology with your establishment’s core values—attentiveness, personalization, and guest comfort. With deep expertise in digital systems and smart service platforms, we provide customized solutions designed to meet the unique needs of each client. At I.TEC, we are more than a tech partner, we are committed to helping you create memorable experiences that set your brand apart in the modern business, event and  hospitality landscape.
+      </p>
+    </section>
+    <section style="margin-bottom:36px;text-align:left;">
+      <h3 style="color:#a67c52;font-size:1.45rem;margin-bottom:10px;font-family:'Playfair Display',serif;letter-spacing:1px;">Client Testimonials</h3>
+      <div style="background:linear-gradient(90deg,#f8fafc 80%,#f3e9e1 100%);border-left:4px solid #a67c52;padding:22px 22px 14px 22px;border-radius:12px;margin-bottom:18px;box-shadow:0 2px 12px #a67c5211;">
+        <p style="margin:0 0 8px 0;font-style:italic;font-size:1.08rem;">Dear I.TEE CONCEPT GLOBAL, I just wanted to take a moment to express my sincere appreciation for the outstanding service I received in my guest house. From start to finish, everything was handled with professionalism, efficiency, and genuine care. Your team exceeded my expectations, and I couldn’t be happier with the results. It’s rare to find a company so committed to customer satisfaction, and I’m truly grateful. Thank you once again for a wonderful experience, I will definitely be recommending your services to others.<br><b>Warm regards, Brain Cole, Food & Beverage manager.</b></p>
+      </div>
+      <div style="background:linear-gradient(90deg,#f8fafc 80%,#e6e2d3 100%);border-left:4px solid #a67c52;padding:22px 22px 14px 22px;border-radius:12px;margin-bottom:18px;box-shadow:0 2px 12px #a67c5211;">
+        <p style="margin:0 0 8px 0;font-style:italic;font-size:1.08rem;">Dear I.TEC GLOBAL, I just want to say a big thank you for the successful setup of the Responsive Scan-and-Order AI Waiter System at my event. It was a brilliant addition with more profit, easy to use, hygienic, and very efficient. Guests loved the convenience of simply scanning and ordering meal without any hassle. It added a modern and classy touch to the entire experience. Your team was professional, timely, and supportive throughout. I truly appreciate the smooth delivery and execution. Looking forward to working with you again.<br><b>Warm regards, Kate Olambe, CEO. PRIME EVENT.</b></p>
+      </div>
+      <div style="background:linear-gradient(90deg,#f8fafc 80%,#f3e9e1 100%);border-left:4px solid #a67c52;padding:22px 22px 14px 22px;border-radius:12px;box-shadow:0 2px 12px #a67c5211;">
+        <p style="margin:0 0 8px 0;font-style:italic;font-size:1.08rem;">Dear I.TEE CONCEPT GLOBAL, Thank you for the successful implementation of the Responsive Scan-and-Order AI Waiter System at our recent corporate event. The system was efficient, user-friendly, and well-received by our guests. It aligned perfectly with our vision for a smart and hygienic experience. We appreciate your team's professionalism and seamless execution. Looking forward to working together again.<br><b>Warm regards, Daniel Adebanjo, Welfare Officer, KMG NIGERIA, 21th March 2025.</b></p>
+      </div>
+    </section>
+    <section style="margin-bottom:36px;text-align:left;">
+      <h3 style="color:#a67c52;font-size:1.45rem;margin-bottom:10px;font-family:'Playfair Display',serif;letter-spacing:1px;">Contact Us</h3>
+      <div style="margin-bottom:18px;font-size:1.08rem;">
+        <b>Address:</b> Church street, Yaba, Lagos, Nigeria.<br>
+        <b>Phone:</b> 234-812-372-6502<br>
+        <b>Email:</b> <a href="mailto:iteeconceptglobal@gmail.com" style="color:#a67c52;font-weight:bold;">iteeconceptglobal@gmail.com</a><br>
+        <b>Web:</b> <a href="https://iteeconceptglobal.com.ng" style="color:#a67c52; font-weight:bold;" target="_blank">iteeconceptglobal.com.ng</a><br>
+        <b>Business Hours:</b> 12:00am - 12:00pm (24 hours)
+      </div>
+      
+    </section>
+  </main>
+  <footer style="margin:32px 0 0 0;text-align:center;color:#888;font-size:0.98rem;opacity:0.85;">
+    <span>&copy; 2025 I.TEC GLOBAL. All rights reserved.</span>
+  </footer>
+</body>
